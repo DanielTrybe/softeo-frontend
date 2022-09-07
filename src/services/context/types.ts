@@ -10,6 +10,7 @@ export type UsersArray = {
     month: string;
     value: number;
     paid: boolean;
+    year: number;
   }>;
 };
 

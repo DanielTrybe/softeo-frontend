@@ -19,9 +19,10 @@ import { useCardsContext } from "hooks";
 type CompactProps = {
   index: number;
   card: SingleMonth;
+  year: number;
 };
 
-function CompactCard({ card, index }: CompactProps) {
+function CompactCard({ card, year, index }: CompactProps) {
   const { users, filterUsersByMonth } = useCardsContext();
   const classes = useStyles();
   const navigate = useNavigate();
@@ -39,11 +40,19 @@ function CompactCard({ card, index }: CompactProps) {
       const mapMonth = usersByThisMonth.map((item: any) => item.monthsToPay);
       const filterMonthPaid = mapMonth
         .flat()
-        .filter((item: any) => item.month === card.month && item.paid === true);
+        .filter(
+          (item: any) =>
+            item.month === card.month &&
+            item.year === year &&
+            item.paid === true
+        );
       const filterMonthNotPaid = mapMonth
         .flat()
         .filter(
-          (item: any) => item.month === card.month && item.paid === false
+          (item: any) =>
+            item.month === card.month &&
+            item.year === year &&
+            item.paid === false
         );
 
       const reducePositive = filterMonthPaid.reduce(

@@ -7,12 +7,13 @@ import { CompactCard } from "components/Items";
 type CardProps = {
   index: number;
   card: SingleMonth;
+  year: number;
 };
 
-function CardShow({ card, index }: CardProps) {
+function CardShow({ card, year, index }: CardProps) {
   return (
     <Grid>
-      <CompactCard card={card} index={index} />
+      <CompactCard card={card} index={index} year={year} />
     </Grid>
   );
 }
