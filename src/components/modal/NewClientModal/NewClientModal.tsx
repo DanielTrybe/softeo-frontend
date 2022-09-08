@@ -22,6 +22,7 @@ import { useStyles } from "./style";
 import { MonthConversion } from "hooks";
 import { UsersArray as UserOBJ } from "services/context/types";
 import { treatments } from "services/data";
+import { useCardsContext } from "hooks";
 
 type PopupDetails = {
   setOpen: (value: boolean) => void;
@@ -29,6 +30,7 @@ type PopupDetails = {
 };
 
 function NewClientModal({ setOpen, open }: PopupDetails) {
+  const { postNewClient } = useCardsContext();
   const classes = useStyles();
 
   const [price, setPrice] = useState("" as string);
@@ -62,15 +64,19 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
   };
 
   const onSubmit = (values: any) => {
-    const monthNow = MonthConversion(new Date().getMonth());
     const newClient = {
       ...values,
       treatment: JSON.parse(values.treatment).name,
       monthsToPay: Array.from({ length: values.monthsToPay }).map(
-        (_position) => {
+        (_position, index: number) => {
+          const myDate = MonthConversion(
+            new Date().getMonth(),
+            index,
+            new Date().getFullYear()
+          );
           return {
-            month: monthNow,
-            year: new Date().getFullYear(),
+            month: myDate?.month,
+            year: myDate?.year,
             value: Math.ceil(
               Number(JSON.parse(values.treatment).value) / values.monthsToPay
             ),
@@ -80,7 +86,8 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
       ),
     };
 
-    console.log(newClient);
+    postNewClient(newClient);
+    handleClose();
   };
 
   return (
@@ -279,17 +286,6 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
           >
             Cadastrar
           </button>
-          {/* <Grid sx={{ mt: 1, mr: 2 }} className={classes.gridBtn}>
-            <Tooltip title="Fechar" placement="left-start">
-              <button
-                onClick={handleClose}
-                type="button"
-                className={classes.closeBtn}
-              >
-                X
-              </button>
-            </Tooltip>
-          </Grid> */}
         </Box>
       </Fade>
     </Modal>

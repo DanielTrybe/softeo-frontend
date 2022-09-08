@@ -46,7 +46,7 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const postNewClient = async (newClient: UsersArray) => {
-    // busca todos usuários
+    // novo cliente
     localStorage.setItem("@users", JSON.stringify([...users, newClient]));
     getUsers();
   };
