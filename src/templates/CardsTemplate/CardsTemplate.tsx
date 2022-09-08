@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Grid, Typography } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
+import { SelectChangeEvent } from "@mui/material/Select";
+
 import { useCardsContext } from "hooks";
 import { CardShow } from "components/Items";
 import SkeletonCustom from "components/skeleton/SkeletonCustom";
@@ -11,11 +20,29 @@ function CardsTemplate() {
 
   const [selectYear, setSelectYear] = useState(2022);
 
+  const handleChange = (event: SelectChangeEvent) => {
+    setSelectYear(Number(event.target.value));
+  };
+
   return (
     <>
       <Typography variant="h5" className={classes.title}>
-        Meses de {selectYear}
+        Meses de
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <InputLabel id="select-year">Ano</InputLabel>
+          <Select
+            labelId="select-year"
+            id="select-year"
+            value={String(selectYear)}
+            label="Ano"
+            onChange={handleChange}
+          >
+            <MenuItem value={2022}>2022</MenuItem>
+            <MenuItem value={2023}>2023</MenuItem>
+          </Select>
+        </FormControl>
       </Typography>
+
       <Grid className={classes.cards}>
         {loading ? (
           <SkeletonCustom

@@ -7,7 +7,7 @@ import {
   CardContent,
   CardActions,
 } from "@mui/material";
-import CommitsModal from "components/modal/CommitsModal";
+
 import SkeletonCustom from "components/skeleton/SkeletonCustom";
 import { useStyles } from "./style";
 
