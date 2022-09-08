@@ -47,7 +47,18 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const postNewClient = async (newClient: UsersArray) => {
     // novo cliente
-    localStorage.setItem("@users", JSON.stringify([...users, newClient]));
+    const isExist = users.find((client) => client.id === newClient.id);
+    if (isExist) {
+      const filterUsers = users.filter(
+        (clients) => clients.id !== newClient.id
+      );
+      localStorage.setItem(
+        "@users",
+        JSON.stringify([...filterUsers, newClient])
+      );
+    } else {
+      localStorage.setItem("@users", JSON.stringify([...users, newClient]));
+    }
     getUsers();
   };
 

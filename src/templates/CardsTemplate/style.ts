@@ -7,6 +7,8 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flexWrap: "wrap",
+    width: "100%",
   },
   cards: {
     display: "flex",

@@ -103,7 +103,12 @@ function CompactCard({ card, year, index }: CompactProps) {
 
             <Grid>
               <CardContent>
-                <button className={classes.btnLinks}>Detalhes do mês</button>
+                <button
+                  className={classes.btnLinks}
+                  onClick={() => openDetailsPopUp(usersByThisMonth)}
+                >
+                  Detalhes do mês
+                </button>
                 <Typography>Saldo do Mês</Typography>
                 <Typography className={classes.positiveProfit}>
                   Pago: {profit()?.paid ?? 0}

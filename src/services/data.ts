@@ -2,6 +2,7 @@ import { Months, Treatment, UsersArray } from "./context/types";
 
 export const usersArray: Array<UsersArray> = [
   {
+    id: 123456789,
     name: "daniel",
     age: 30,
     email: "daniel.roberto1991@hotmail.com",

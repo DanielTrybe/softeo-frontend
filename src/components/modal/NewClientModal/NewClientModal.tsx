@@ -66,6 +66,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
   const onSubmit = (values: any) => {
     const newClient = {
       ...values,
+      id: Math.ceil(Math.random() * 10000),
       treatment: JSON.parse(values.treatment).name,
       monthsToPay: Array.from({ length: values.monthsToPay }).map(
         (_position, index: number) => {

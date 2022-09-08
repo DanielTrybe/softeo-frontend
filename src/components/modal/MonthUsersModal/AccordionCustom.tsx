@@ -11,11 +11,12 @@ import {
   Divider,
 } from "@mui/material";
 import { useStyles } from "./style";
-
+import { useCardsContext } from "hooks";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { UsersArray } from "services/context/types";
 
 type AccordionProps = {
+  user: UsersArray;
   cardMonth: string;
   title: string;
   subTitle: string;
@@ -34,7 +35,9 @@ function AccordionCustom({
   comment,
   monthsToPay,
   cardMonth,
+  user,
 }: AccordionProps) {
+  const { postNewClient } = useCardsContext();
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
@@ -42,6 +45,24 @@ function AccordionCustom({
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+
+  const editPayment = (userPayment: UsersArray, index: number) => {
+    const updatePayment = (payment: any) => {
+      const find = payment.find((_pay: any, i: number) => i === index);
+      const filter = payment.filter((_pay: any, i: number) => i !== index);
+      console.log(find);
+      const update = [...filter, { ...find, paid: true }];
+
+      return update;
+    };
+
+    const payout = {
+      ...userPayment,
+      monthsToPay: updatePayment(monthsToPay),
+    };
+    console.log(payout, "payout");
+    postNewClient(payout);
+  };
 
   return (
     <Grid sx={{ mb: 1, width: " 100%" }}>
@@ -72,7 +93,7 @@ function AccordionCustom({
             component="div"
           >
             {monthsToPay.length > 0 &&
-              monthsToPay.map((month) => (
+              monthsToPay.map((month, index) => (
                 <ListItem divider>
                   <Grid
                     className={
@@ -91,6 +112,16 @@ function AccordionCustom({
                     <ListItemText
                       primary={`Pago: ${month?.paid ? "Sim" : "Não"}`}
                     />
+                    <Grid sx={{ width: 55 }}>
+                      {!month?.paid && (
+                        <button
+                          onClick={() => editPayment(user, index)}
+                          className={classes.btnDone}
+                        >
+                          Quitar
+                        </button>
+                      )}
+                    </Grid>
                   </Grid>
                 </ListItem>
               ))}

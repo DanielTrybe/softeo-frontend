@@ -32,13 +32,6 @@ function MonthUsersModal({
 
   const handleClose = () => setOpen(false);
 
-  const validDate = (date: string) => {
-    const valid = isValid(new Date(date));
-    return valid
-      ? format(new Date(date), "dd/MM/yyyy hh:mm:ss")
-      : "Data inválida";
-  };
-  console.log(modalInfo);
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -69,6 +62,7 @@ function MonthUsersModal({
                 comment={user?.tel}
                 monthsToPay={user?.monthsToPay}
                 cardMonth={cardMonth}
+                user={user}
               />
             ))
           ) : (

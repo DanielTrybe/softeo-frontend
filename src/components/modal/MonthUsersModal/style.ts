@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
   notSelectedMonth: {},
   textList: {
-    marginRight: 15,
+    marginRight: 10,
   },
   accordionDetails: {
     border: "1px solid black",
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     width: "40%",
     maxHeight: "80%",
     minHeight: 300,
-    overflowY: "scroll",
+    overflowY: "auto",
     background: "white",
     border: "1px solid #EAEAEA",
     padding: 5,
@@ -67,6 +67,24 @@ const useStyles = makeStyles({
     "&:active": {
       background: "gray",
     },
+  },
+  btnDone: {
+    backgroundColor: "#225F6E",
+    borderRadius: 5,
+    border: "none",
+    fontSize: "15px",
+
+    padding: 5,
+    marginBottom: 3,
+    color: "white",
+    fontWeight: "bold",
+    "&:hover": {
+      backgroundColor: "#BEC8CE",
+    },
+    "&:active": {
+      backgroundColor: "#90969A",
+    },
+    cursor: "pointer",
   },
 });
 
