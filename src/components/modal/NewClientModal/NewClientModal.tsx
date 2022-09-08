@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 
 import {
   Typography,
@@ -17,19 +17,11 @@ import {
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { schema } from "./schema";
 import { useStyles } from "./style";
-import { isValid, format } from "date-fns";
+import { MonthConversion } from "hooks";
 import { UsersArray as UserOBJ } from "services/context/types";
 import { treatments } from "services/data";
-
-const schema = yup.object({
-  name: yup.string().required("Digite um nome."),
-  age: yup.string().required("Digite a idade."),
-  email: yup.string().required("Digite um e-mail."),
-  tel: yup.string().required("Digite um telefone."),
-  treatment: yup.string().required("Selecione o tratamento."),
-});
 
 type PopupDetails = {
   setOpen: (value: boolean) => void;
@@ -38,6 +30,9 @@ type PopupDetails = {
 
 function NewClientModal({ setOpen, open }: PopupDetails) {
   const classes = useStyles();
+
+  const [price, setPrice] = useState("" as string);
+  const [parcels, setParcels] = useState(0 as any);
 
   const {
     control,
@@ -57,8 +52,35 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
 
   const handleClose = () => setOpen(false);
 
+  const verifyPrice = () => {
+    if (!price || !parcels)
+      return "Selecione o tratamento e parcelas e clique em 'Calcular'";
+    else {
+      const moneyPerMonth = Number(JSON.parse(price).value) / parcels;
+      return `O cliente vai pagar ${Math.ceil(moneyPerMonth)} por mês`;
+    }
+  };
+
   const onSubmit = (values: any) => {
-    console.log(values);
+    const monthNow = MonthConversion(new Date().getMonth());
+    const newClient = {
+      ...values,
+      treatment: JSON.parse(values.treatment).name,
+      monthsToPay: Array.from({ length: values.monthsToPay }).map(
+        (_position) => {
+          return {
+            month: monthNow,
+            year: new Date().getFullYear(),
+            value: Math.ceil(
+              Number(JSON.parse(values.treatment).value) / values.monthsToPay
+            ),
+            paid: false,
+          };
+        }
+      ),
+    };
+
+    console.log(newClient);
   };
 
   return (
@@ -83,7 +105,6 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
           >
             Cadastre um novo Tratamento
           </Typography>
-
           <Controller
             control={control}
             render={({ field: { onChange, value } }) => (
@@ -92,7 +113,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
                 label="Nome"
                 id="outlined-start-adornment"
                 sx={{
-                  m: 1,
+                  m: 2,
                   width: "94.5%",
                 }}
                 value={value}
@@ -109,7 +130,6 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
             )}
             name="name"
           />
-
           <Grid display="flex" sx={{ widht: "100%" }}>
             <Controller
               control={control}
@@ -119,7 +139,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
                   label="Idade"
                   id="outlined-start-adornment"
                   sx={{
-                    m: 1,
+                    m: 2,
                     width: "30%",
                   }}
                   value={value}
@@ -142,10 +162,10 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
               render={({ field: { onChange, value } }) => (
                 <TextField
                   inputProps={{ "data-testid": "header-input" }}
-                  label="Telefone"
+                  label="Celular com DDD"
                   id="outlined-start-adornment"
                   sx={{
-                    m: 1,
+                    m: 2,
                     width: "70%",
                   }}
                   value={value}
@@ -163,7 +183,6 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
               name="tel"
             />
           </Grid>
-
           <Controller
             control={control}
             render={({ field: { onChange, value } }) => (
@@ -172,7 +191,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
                 label="E-mail"
                 id="outlined-start-adornment"
                 sx={{
-                  m: 1,
+                  m: 2,
                   width: "94.5%",
                 }}
                 value={value}
@@ -189,36 +208,9 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
             )}
             name="email"
           />
-          {/* 
-          <Controller
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <TextField
-                inputProps={{ "data-testid": "header-input" }}
-                label="Tratamento"
-                id="outlined-start-adornment"
-                sx={{
-                  m: 1,
-                  width: "94.5%",
-                }}
-                value={value}
-                onChange={onChange}
-                error={errors?.treatment ? true : false}
-                helperText={
-                  errors?.treatment && (
-                    <span style={{ position: "absolute" }}>
-                      {errors?.treatment?.message}
-                    </span>
-                  )
-                }
-              />
-            )}
-            name="treatment"
-          /> */}
-
           <FormControl
             sx={{
-              m: 1,
+              m: 2,
               width: "94.5%",
             }}
           >
@@ -231,7 +223,10 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
                   id="tratamento"
                   value={value}
                   label="Tratamento"
-                  onChange={(value) => onChange(value)}
+                  onChange={(value) => {
+                    onChange(value);
+                    setPrice(value.target.value);
+                  }}
                 >
                   {treatments.map((treatment, index) => (
                     <MenuItem key={index} value={JSON.stringify(treatment)}>
@@ -244,6 +239,39 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
             />
           </FormControl>
 
+          <FormControl
+            sx={{
+              m: 2,
+              width: "94.5%",
+            }}
+          >
+            <InputLabel id="monthsToPay">Parcelar</InputLabel>
+            <Controller
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Select
+                  labelId="monthsToPay"
+                  id="monthsToPay"
+                  value={value}
+                  label="Parcelar"
+                  onChange={(value) => {
+                    onChange(value);
+                    setParcels(value.target.value);
+                  }}
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                    (parcel, index) => (
+                      <MenuItem key={index} value={parcel}>
+                        {parcel} x
+                      </MenuItem>
+                    )
+                  )}
+                </Select>
+              )}
+              name="monthsToPay"
+            />
+          </FormControl>
+          <Grid sx={{ mt: 1, mb: 1 }}>{verifyPrice()}</Grid>
           <button
             onClick={handleSubmit(onSubmit)}
             type="button"

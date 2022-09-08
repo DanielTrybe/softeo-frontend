@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import api from "services/api/api";
+
 // import { CardsContextProps } from "./interface";
 
 import { CardsContextProps, UsersArray, Months } from "./types";
@@ -45,6 +45,12 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
     return usersByMonth;
   };
 
+  const postNewClient = async (newClient: UsersArray) => {
+    // busca todos usuários
+    localStorage.setItem("@users", JSON.stringify([...users, newClient]));
+    getUsers();
+  };
+
   useEffect(() => {
     const getLocalUsers = localStorage.getItem("@users");
     if (!getLocalUsers) {
@@ -61,6 +67,7 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
     getUsers,
     loading,
     filterUsersByMonth,
+    postNewClient,
   };
 
   return (

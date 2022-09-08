@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     width: "40%",
     maxHeight: "80%",
     minHeight: 300,
-    overflowY: "scroll",
+    overflowY: "auto",
     overflowX: "hidden",
     background: "white",
     border: "1px solid #EAEAEA",
