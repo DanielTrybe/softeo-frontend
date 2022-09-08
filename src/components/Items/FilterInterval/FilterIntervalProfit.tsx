@@ -23,6 +23,7 @@ function FilterIntervalProfit({
         (item: any) =>
           convertMonth(item?.month) >= firstMonth &&
           convertMonth(item?.month) <= secondMonth &&
+          item?.year === year &&
           item.paid === true
       );
     const faturamento = filterMonthPaid.reduce(

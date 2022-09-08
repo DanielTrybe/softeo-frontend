@@ -122,6 +122,7 @@ function CompactCard({ card, year, index }: CompactProps) {
         </div>
       </Paper>
       <MonthUsersModal
+        year={year}
         modalInfo={modalInfo}
         setOpen={setOpenModal}
         open={openModal}

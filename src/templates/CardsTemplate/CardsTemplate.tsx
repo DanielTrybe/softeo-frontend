@@ -37,11 +37,11 @@ function CardsTemplate() {
   const [selectYear, setSelectYear] = useState(2022);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setSelectedFirstMonth(Number(event.target.value));
+    setSelectYear(Number(event.target.value));
   };
 
   const handleChangeFirstMonth = (event: SelectChangeEvent) => {
-    setSelectYear(Number(event.target.value));
+    setSelectedFirstMonth(Number(event.target.value));
   };
 
   const handleChangeSecondMonth = (event: SelectChangeEvent) => {

@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useStyles } from "./style";
-import { isValid, format } from "date-fns";
+
 import AccordionCustom from "./AccordionCustom";
 import { UsersArray as UserOBJ } from "services/context/types";
 
@@ -20,6 +20,7 @@ type PopupDetails = {
   setOpen: (value: boolean) => void;
   open: boolean;
   cardMonth: string;
+  year: number;
 };
 
 function MonthUsersModal({
@@ -27,8 +28,28 @@ function MonthUsersModal({
   setOpen,
   open,
   cardMonth,
+  year,
 }: PopupDetails) {
   const classes = useStyles();
+
+  const verifyYear = (user: UserOBJ) => {
+    if (
+      user.monthsToPay.find(
+        (item) => item.month === cardMonth && item.year === year
+      )
+    ) {
+      return (
+        <AccordionCustom
+          title={user?.name}
+          subTitle={user?.treatment}
+          comment={user?.tel}
+          monthsToPay={user?.monthsToPay}
+          cardMonth={cardMonth}
+          user={user}
+        />
+      );
+    } else <span />;
+  };
 
   const handleClose = () => setOpen(false);
 
@@ -55,16 +76,7 @@ function MonthUsersModal({
             Pagamentos do mês
           </Typography>
           {modalInfo.length > 0 ? (
-            modalInfo.map((user) => (
-              <AccordionCustom
-                title={user?.name}
-                subTitle={user?.treatment}
-                comment={user?.tel}
-                monthsToPay={user?.monthsToPay}
-                cardMonth={cardMonth}
-                user={user}
-              />
-            ))
+            modalInfo.map((user) => verifyYear(user))
           ) : (
             <Typography variant="h6" className={classes.notFoundText}>
               Não encontrei nenhum cliente para este mês.
