@@ -12,9 +12,9 @@ interface MediaProps {
 
 function SkeletonCustom({ length, childClass, fatherClass }: MediaProps) {
   return (
-    <Grid sx={{ fatherClass }}>
+    <Grid sx={fatherClass}>
       {Array.from(new Array(length)).map((_item, index) => (
-        <Skeleton sx={{ childClass }} key={index} variant="rectangular" />
+        <Skeleton style={childClass} key={index} variant="rectangular" />
       ))}
     </Grid>
   );

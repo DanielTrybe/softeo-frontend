@@ -17,8 +17,8 @@ const useStyles = {
     padding: 5,
   },
   childClass: {
-    maxWidth: 345,
-    minWidth: 345,
+    maxWidth: 320,
+    minWidth: 320,
     minHeight: 200,
     maxHeight: 200,
     display: "flex",
