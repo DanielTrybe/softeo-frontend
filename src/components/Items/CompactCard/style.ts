@@ -1,6 +1,12 @@
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
+  positiveProfit: {
+    color: "darkgreen",
+  },
+  negativeProfit: {
+    color: "orange",
+  },
   card: {
     maxWidth: 345,
     minWidth: 345,
@@ -12,13 +18,15 @@ const useStyles = makeStyles({
   },
   cardHeader: { maxHeight: 200, overflow: "hidden" },
   btnLinks: {
-    backgroundColor: "#F9C29D",
+    backgroundColor: "#225F6E",
     borderRadius: 5,
     border: "none",
     fontSize: "15px",
     width: "100%",
     padding: 5,
     marginBottom: 3,
+    color: "white",
+    fontWeight: "bold",
     "&:hover": {
       backgroundColor: "#BEC8CE",
     },

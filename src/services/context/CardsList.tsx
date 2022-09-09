@@ -1,10 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import api from "services/api/api";
-// import { CardsContextProps } from "./interface";
-
-import { CardsContextProps, UsersArray, Months } from "./types";
-import { usersArray, treatments, monthsMoney } from "../data";
-
+import { CardsContextProps, UsersArray } from "./types";
+import { usersArray, monthsMoney } from "../data";
 export const CardsContext = createContext({} as CardsContextProps);
 
 const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -38,11 +34,21 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const filterUsersByMonth = (month: string) => {
-    const usersByMonth = users.filter((user) =>
-      user.monthsToPay.find((paidMonth) => paidMonth.month === month)
-    );
-    return usersByMonth;
+  const postNewClient = async (newClient: UsersArray) => {
+    // novo cliente
+    const isExist = users.find((client) => client.id === newClient.id);
+    if (isExist) {
+      const filterUsers = users.filter(
+        (clients) => clients.id !== newClient.id
+      );
+      localStorage.setItem(
+        "@users",
+        JSON.stringify([...filterUsers, newClient])
+      );
+    } else {
+      localStorage.setItem("@users", JSON.stringify([...users, newClient]));
+    }
+    getUsers();
   };
 
   useEffect(() => {
@@ -60,7 +66,7 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
     users,
     getUsers,
     loading,
-    filterUsersByMonth,
+    postNewClient,
   };
 
   return (

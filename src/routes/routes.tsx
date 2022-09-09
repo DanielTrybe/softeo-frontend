@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { CardsPage, UsersDetails } from "pages";
+import { CardsPage } from "pages";
 import { MainLayout } from "components/layouts";
 
 function AppRoutes() {
@@ -7,7 +7,6 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<CardsPage />} />
-        <Route path="/users" element={<UsersDetails />} />
       </Route>
     </Routes>
   );

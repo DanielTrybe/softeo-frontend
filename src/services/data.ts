@@ -2,16 +2,17 @@ import { Months, Treatment, UsersArray } from "./context/types";
 
 export const usersArray: Array<UsersArray> = [
   {
+    id: 123456789,
     name: "daniel",
     age: 30,
     email: "daniel.roberto1991@hotmail.com",
     tel: "11953327667",
     treatment: "limpeza normal",
     monthsToPay: [
-      { month: "jan", value: 300, paid: true },
-      { month: "fev", value: 300, paid: false },
-      { month: "mar", value: 300, paid: false },
-      { month: "abr", value: 300, paid: false },
+      { month: "jan", year: 2022, value: 300, paid: true },
+      { month: "fev", year: 2022, value: 300, paid: false },
+      { month: "mar", year: 2022, value: 300, paid: false },
+      { month: "abr", year: 2022, value: 300, paid: false },
     ],
   },
 ];
