@@ -12,6 +12,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  FormHelperText,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -38,6 +39,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<UserOBJ>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -87,6 +89,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
 
     postNewClient(newClient);
     handleClose();
+    reset();
   };
 
   return (
@@ -225,6 +228,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Select
+                  error={errors?.treatment ? true : false}
                   labelId="tratamento"
                   id="tratamento"
                   value={value}
@@ -243,6 +247,18 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
               )}
               name="treatment"
             />
+            {errors?.treatment && (
+              <span
+                style={{
+                  position: "absolute",
+                  margin: "60px 0 0 10px",
+                  color: "darkred",
+                  fontSize: 12,
+                }}
+              >
+                {errors?.treatment?.message}
+              </span>
+            )}
           </FormControl>
 
           <FormControl
@@ -256,6 +272,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Select
+                  error={errors?.monthsToPay ? true : false}
                   labelId="monthsToPay"
                   id="monthsToPay"
                   value={value}
@@ -276,6 +293,18 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
               )}
               name="monthsToPay"
             />
+            {errors?.monthsToPay && (
+              <span
+                style={{
+                  position: "absolute",
+                  margin: "60px 0 0 10px",
+                  color: "darkred",
+                  fontSize: 12,
+                }}
+              >
+                {errors?.monthsToPay?.message}
+              </span>
+            )}
           </FormControl>
           <Grid sx={{ mt: 1, mb: 1 }}>{verifyPrice()}</Grid>
           <button
