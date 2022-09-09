@@ -55,8 +55,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
   const handleClose = () => setOpen(false);
 
   const verifyPrice = () => {
-    if (!price || !parcels)
-      return "Selecione o tratamento e parcelas e clique em 'Calcular'";
+    if (!price || !parcels) return "Selecione o tratamento e parcelas";
     else {
       const moneyPerMonth = Number(JSON.parse(price).value) / parcels;
       return `O cliente vai pagar ${Math.ceil(moneyPerMonth)} por mês`;
