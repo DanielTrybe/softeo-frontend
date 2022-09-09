@@ -1,5 +1,7 @@
 # Projeto Softeo-FrontEnd
 
+<code><img height="50" src="https://blog.4linux.com.br/wp-content/uploads/2018/01/Heroku.png"></code><a href="https://softeo-frontend-daniel.herokuapp.com/">clique aqui para visualizar no HEROKU</a>
+
 ## Principais tecnologias utilizadas
 
 <code><img height="30" src="https://bognarjunior.files.wordpress.com/2018/09/typescript.png"></code>
