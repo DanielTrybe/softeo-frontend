@@ -43,7 +43,6 @@ export interface CardsContextProps {
   users: Array<UsersArray>;
   search: string;
   setSearch: (value: string) => void;
-  filterUsersByMonth: (month: string) => void;
   getUsers: () => void;
   loading: boolean;
   postNewClient: (newClient: UsersArray) => void;

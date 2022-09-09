@@ -38,13 +38,6 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const filterUsersByMonth = (month: string) => {
-    const usersByMonth = users.filter((user) =>
-      user.monthsToPay.find((paidMonth) => paidMonth.month === month)
-    );
-    return usersByMonth;
-  };
-
   const postNewClient = async (newClient: UsersArray) => {
     // novo cliente
     const isExist = users.find((client) => client.id === newClient.id);
@@ -77,7 +70,6 @@ const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
     users,
     getUsers,
     loading,
-    filterUsersByMonth,
     postNewClient,
   };
 

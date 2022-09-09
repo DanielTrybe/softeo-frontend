@@ -23,30 +23,36 @@ type CompactProps = {
 };
 
 function CompactCard({ card, year, index }: CompactProps) {
-  const { users, filterUsersByMonth } = useCardsContext();
+  const { users } = useCardsContext();
   const classes = useStyles();
 
-  const [usersByThisMonth, setUsersByThisMonth] = useState([] as any);
+  const [usersByThisMonth, setUsersByThisMonth] = useState(
+    [] as Array<UserOBJ>
+  );
   const [openModal, setOpenModal] = useState(false);
   const [modalInfo, setModalInfo] = useState([] as Array<UserOBJ>);
+
+  const filterUsersByMonth = (month: string) => {
+    const usersByMonth = users.filter((user) =>
+      user.monthsToPay.find((paidMonth) => paidMonth.month === month)
+    );
+    return usersByMonth;
+  };
 
   useEffect(() => {
     if (users.length > 0) {
       const filter = filterUsersByMonth(card.month);
-
       setUsersByThisMonth(filter);
     }
   }, []);
 
   const profit = () => {
     if (usersByThisMonth.length > 0) {
-      const mapMonth = usersByThisMonth.map(
-        (item: UserOBJ) => item.monthsToPay
-      );
+      const mapMonth = usersByThisMonth.map((item) => item.monthsToPay);
       const filterMonthPaid = mapMonth
         .flat()
         .filter(
-          (item: any) =>
+          (item) =>
             item.month === card.month &&
             item.year === year &&
             item.paid === true
@@ -54,18 +60,18 @@ function CompactCard({ card, year, index }: CompactProps) {
       const filterMonthNotPaid = mapMonth
         .flat()
         .filter(
-          (item: any) =>
+          (item) =>
             item.month === card.month &&
             item.year === year &&
             item.paid === false
         );
 
       const reducePositive = filterMonthPaid.reduce(
-        (acc: any, next: any) => acc + next.value,
+        (acc, next) => acc + next.value,
         0
       );
       const reduceNegative = filterMonthNotPaid.reduce(
-        (acc: any, next: any) => acc + next.value,
+        (acc, next) => acc + next.value,
         0
       );
       return { paid: reducePositive, notPaid: reduceNegative };

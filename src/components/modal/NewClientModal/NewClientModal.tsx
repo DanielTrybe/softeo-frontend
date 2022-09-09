@@ -34,7 +34,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
   const classes = useStyles();
 
   const [price, setPrice] = useState("" as string);
-  const [parcels, setParcels] = useState(0 as any);
+  const [parcels, setParcels] = useState(0 as number);
 
   const {
     control,
@@ -264,7 +264,7 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
                   label="Parcelar"
                   onChange={(value) => {
                     onChange(value);
-                    setParcels(value.target.value);
+                    setParcels(Number(value.target.value));
                   }}
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(

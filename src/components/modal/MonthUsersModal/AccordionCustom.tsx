@@ -15,18 +15,20 @@ import { useCardsContext } from "hooks";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { UsersArray } from "services/context/types";
 
+type MonthsToPay = {
+  month: string;
+  value: number;
+  paid: boolean;
+  year: number;
+};
+
 type AccordionProps = {
   user: UsersArray;
   cardMonth: string;
   title: string;
   subTitle: string;
   comment: string;
-  monthsToPay: Array<{
-    month: string;
-    value: number;
-    paid: boolean;
-    year: number;
-  }>;
+  monthsToPay: Array<MonthsToPay>;
 };
 
 function AccordionCustom({
@@ -47,20 +49,20 @@ function AccordionCustom({
     };
 
   const editPayment = (userPayment: UsersArray, index: number) => {
-    const updatePayment = (payment: any) => {
-      const find = payment.find((_pay: any, i: number) => i === index);
-      const filter = payment.filter((_pay: any, i: number) => i !== index);
+    const updatePayment = (payment: Array<MonthsToPay>) => {
+      const find = payment.find((_pay, i: number) => i === index);
+      const filter = payment.filter((_pay, i: number) => i !== index);
       console.log(find);
       const update = [...filter, { ...find, paid: true }];
 
       return update;
     };
 
-    const payout = {
+    const payout: any = {
       ...userPayment,
-      monthsToPay: updatePayment(monthsToPay),
+      monthsToPay: updatePayment(user.monthsToPay),
     };
-    console.log(payout, "payout");
+
     postNewClient(payout);
   };
 
