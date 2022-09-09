@@ -75,7 +75,7 @@ function MonthUsersModal({
             modalInfo.map((user) => verifyYear(user))
           ) : (
             <Typography variant="h6" sx={classes.notFoundText}>
-              Não encontrei nenhum cliente para este mês.
+              Não encontrado nenhum registro para esse mês.
             </Typography>
           )}
 
