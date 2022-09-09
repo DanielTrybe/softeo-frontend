@@ -73,8 +73,8 @@ function CardsTemplate() {
             label="Inicio"
             onChange={handleChangeFirstMonth}
           >
-            {monthsArray.map((month) => (
-              <MenuItem value={month.value}>
+            {monthsArray.map((month, index) => (
+              <MenuItem key={index} value={month.value}>
                 {month.name.toUpperCase()}
               </MenuItem>
             ))}
@@ -89,8 +89,8 @@ function CardsTemplate() {
             label="Fim"
             onChange={handleChangeSecondMonth}
           >
-            {monthsArray.map((month) => (
-              <MenuItem value={month.value}>
+            {monthsArray.map((month, index) => (
+              <MenuItem key={index} value={month.value}>
                 {month.name.toUpperCase()}
               </MenuItem>
             ))}
