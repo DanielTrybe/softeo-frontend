@@ -6,7 +6,7 @@ import AppRoutes from "routes/routes";
 
 function App() {
   return (
-    <BrowserRouter basename="softeo-frontend">
+    <BrowserRouter>
       <CardsProvider>
         <AppRoutes />
       </CardsProvider>
