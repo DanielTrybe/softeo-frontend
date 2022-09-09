@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/styles";
+import styled from "styled-components";
 
-const useStyles = makeStyles({
+const useStyles = {
   title: {
     textAlign: "center",
     borderBottom: "1px solid #EAEAEA",
@@ -24,13 +24,14 @@ const useStyles = makeStyles({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "40%",
+    minWidth: "90%",
+
     maxHeight: "80%",
     minHeight: 300,
     overflowY: "auto",
     background: "white",
     border: "1px solid #EAEAEA",
-    padding: 5,
+    padding: 2,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -53,21 +54,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "flex-end",
   },
-  closeBtn: {
-    width: 30,
-    height: 30,
 
-    background: "#F9C29D",
-    border: "none",
-    borderRadius: "50%",
-    position: "relative",
-    "&:hover": {
-      background: "#BEC8CE",
-    },
-    "&:active": {
-      background: "gray",
-    },
-  },
   btnDone: {
     backgroundColor: "#225F6E",
     borderRadius: 5,
@@ -86,6 +73,22 @@ const useStyles = makeStyles({
     },
     cursor: "pointer",
   },
-});
+};
 
-export { useStyles };
+const CloseButton = styled.button`
+  width: 40;
+  height: 40;
+  margin: 0 10px 0 0;
+  background: #f9c29d;
+  border: none;
+  border-radius: 30%;
+  position: relative;
+  &:hover {
+    background: #bec8ce;
+  }
+  &:active: {
+    background: gray;
+  }
+`;
+
+export { useStyles, CloseButton };

@@ -39,7 +39,7 @@ function AccordionCustom({
   user,
 }: AccordionProps) {
   const { postNewClient } = useCardsContext();
-  const classes = useStyles();
+  const classes = useStyles;
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -87,7 +87,7 @@ function AccordionCustom({
             Tratamento: {subTitle}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails className={classes.accordionDetails}>
+        <AccordionDetails style={classes.accordionDetails}>
           <Typography>Tel: {comment}</Typography>
           <List
             sx={{ width: "100%", bgcolor: "background.paper" }}
@@ -97,7 +97,7 @@ function AccordionCustom({
               monthsToPay.map((month, index) => (
                 <ListItem divider>
                   <Grid
-                    className={
+                    style={
                       cardMonth === month?.month
                         ? classes.selectedMonth
                         : classes.notSelectedMonth
@@ -106,7 +106,7 @@ function AccordionCustom({
                   >
                     <ListItemText
                       primary={month?.month.toUpperCase()}
-                      className={classes.textList}
+                      style={classes.textList}
                     />
 
                     <ListItemText primary={`Valor: ${month?.value}`} />
@@ -117,7 +117,7 @@ function AccordionCustom({
                       {!month?.paid && (
                         <button
                           onClick={() => editPayment(user, index)}
-                          className={classes.btnDone}
+                          style={classes.btnDone}
                         >
                           Quitar
                         </button>
