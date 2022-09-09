@@ -59,15 +59,25 @@ Com isto inicializamos um novo repositório, associamos o remoto com o link do r
 
 ## Página inicial
 
-Consiste em listar os meses do ano com os lucros e valores que ainda vão ser pagos.
+1. Consiste em listar os meses do ano com os lucros e valores que ainda vão ser pagos.
+2. É possível filtrar pelos meses para que seja calculado o faturamento e os valores pendentes.
+
+![SnapCrab_NoName_2022-9-9_15-2-52_No-00](https://user-images.githubusercontent.com/78499630/189418736-8e5a0b8b-3ba3-4bfb-8b02-f3b9b43d4a81.png)
 
 ## Detalhes do mês
 
-Neste popup é exibido o mês e todas as pessoas que tem alguma parcela no mês.
+1. Neste popup é exibido o mês e todas as pessoas que tem alguma parcela no mês.
 
-## Clientes
+![SnapCrab_NoName_2022-9-9_15-3-11_No-00](https://user-images.githubusercontent.com/78499630/189418989-e4d50b3c-efcf-4372-800c-84317a015624.png)
+![SnapCrab_NoName_2022-9-9_15-3-15_No-00](https://user-images.githubusercontent.com/78499630/189419072-d507ca0e-0780-4806-a747-671ebf25473f.png)
 
-Nesta página mostra o cadastro de todos os clientes que já fizeram algum tratamento.
+## Novo tratamento
+
+1. A página principal é possivel clicar no botão "Novo Tratamento" na parte duperior direita para abrir o popup e cadastrar um novo tratamento.
+2. O formulário possui validações.
+
+![SnapCrab_NoName_2022-9-9_15-3-15_No-00](https://user-images.githubusercontent.com/78499630/189419072-d507ca0e-0780-4806-a747-671ebf25473f.png)
+![SnapCrab_NoName_2022-9-9_15-22-35_No-00](https://user-images.githubusercontent.com/78499630/189419395-3e3a55db-cd98-48a9-bcb9-b5d3e6b9a183.png)
 
 ### Estrutura
 
