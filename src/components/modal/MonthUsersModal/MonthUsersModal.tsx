@@ -10,7 +10,7 @@ import {
   Tooltip,
   CircularProgress,
 } from "@mui/material";
-import { useStyles } from "./style";
+import { useStyles, CloseButton } from "./style";
 
 import AccordionCustom from "./AccordionCustom";
 import { UsersArray as UserOBJ } from "services/context/types";
@@ -30,7 +30,7 @@ function MonthUsersModal({
   cardMonth,
   year,
 }: PopupDetails) {
-  const classes = useStyles();
+  const classes = useStyles;
 
   const verifyYear = (user: UserOBJ) => {
     if (
@@ -67,31 +67,23 @@ function MonthUsersModal({
       }}
     >
       <Fade in={open}>
-        <Box className={classes.boxStyle}>
-          <Typography
-            className={classes.title}
-            variant="h5"
-            sx={{ mb: 2, mt: 1 }}
-          >
+        <Box sx={classes.boxStyle}>
+          <Typography sx={classes.title} variant="h5">
             Pagamentos do mês
           </Typography>
           {modalInfo.length > 0 ? (
             modalInfo.map((user) => verifyYear(user))
           ) : (
-            <Typography variant="h6" className={classes.notFoundText}>
+            <Typography variant="h6" sx={classes.notFoundText}>
               Não encontrei nenhum cliente para este mês.
             </Typography>
           )}
 
-          <Grid sx={{ mt: 1, mr: 2 }} className={classes.gridBtn}>
+          <Grid sx={classes.gridBtn}>
             <Tooltip title="Fechar" placement="left-start">
-              <button
-                onClick={handleClose}
-                type="button"
-                className={classes.closeBtn}
-              >
+              <CloseButton onClick={handleClose} type="button">
                 X
-              </button>
+              </CloseButton>
             </Tooltip>
           </Grid>
         </Box>

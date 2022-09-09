@@ -1,6 +1,4 @@
-import { makeStyles } from "@material-ui/styles";
-
-const useStyles = makeStyles({
+const useStyles = {
   title: {
     textAlign: "center",
     borderBottom: "1px solid #EAEAEA",
@@ -24,14 +22,14 @@ const useStyles = makeStyles({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "40%",
+    width: "90%",
     maxHeight: "80%",
     minHeight: 300,
     overflowY: "auto",
     overflowX: "hidden",
     background: "white",
     border: "1px solid #EAEAEA",
-    padding: 15,
+    padding: 1,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -42,17 +40,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-  },
-  "@media (max-width: 400px)": {
-    boxStyle: {
-      width: 320,
-    },
-  },
-  gridBtn: {
-    position: "fixed",
-    width: "100%",
-    display: "flex",
-    justifyContent: "flex-end",
   },
   closeBtn: {
     backgroundColor: "#225F6E",
@@ -73,6 +60,6 @@ const useStyles = makeStyles({
     },
     cursor: "pointer",
   },
-});
+};
 
 export { useStyles };

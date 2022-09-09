@@ -1,6 +1,4 @@
-import { makeStyles } from "@material-ui/styles";
-
-const useStyles = makeStyles({
+const useStyles = {
   positiveProfit: {
     color: "darkgreen",
   },
@@ -42,6 +40,6 @@ const useStyles = makeStyles({
     "&:visited": { textDecoration: "none" },
     "&active": { textDecoration: "none" },
   },
-});
+};
 
 export { useStyles };

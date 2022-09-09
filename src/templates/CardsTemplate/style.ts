@@ -1,6 +1,4 @@
-import { makeStyles } from "@material-ui/styles";
-
-const useStyles = makeStyles({
+const useStyles = {
   title: {
     textAlign: "center",
     borderBottom: "1px solid #EAEAEA",
@@ -15,9 +13,8 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
 
     justifyContent: "center",
-    gap: 10,
+    gap: 1,
     padding: 5,
-    marginTop: 5,
   },
   childClass: {
     maxWidth: 345,
@@ -35,6 +32,6 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-});
+};
 
 export { useStyles };

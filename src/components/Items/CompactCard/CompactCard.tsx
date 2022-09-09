@@ -24,7 +24,7 @@ type CompactProps = {
 
 function CompactCard({ card, year, index }: CompactProps) {
   const { users } = useCardsContext();
-  const classes = useStyles();
+  const classes = useStyles;
 
   const [usersByThisMonth, setUsersByThisMonth] = useState(
     [] as Array<UserOBJ>
@@ -88,7 +88,7 @@ function CompactCard({ card, year, index }: CompactProps) {
     <>
       <Paper elevation={2}>
         <div data-testid={`card-${index}-card`}>
-          <Card className={classes.card}>
+          <Card sx={classes.card}>
             <CardHeader
               action={
                 <IconButton
@@ -105,22 +105,22 @@ function CompactCard({ card, year, index }: CompactProps) {
                   {card.month.toUpperCase()}
                 </span>
               }
-              className={classes.cardHeader}
+              style={classes.cardHeader}
             />
 
             <Grid>
               <CardContent>
                 <button
-                  className={classes.btnLinks}
+                  style={classes.btnLinks}
                   onClick={() => openDetailsPopUp(usersByThisMonth)}
                 >
                   Detalhes do mês
                 </button>
                 <Typography>Saldo do Mês</Typography>
-                <Typography className={classes.positiveProfit}>
+                <Typography style={classes.positiveProfit}>
                   Pago: {profit()?.paid ?? 0}
                 </Typography>
-                <Typography className={classes.negativeProfit}>
+                <Typography style={classes.negativeProfit}>
                   Pendente: {profit()?.notPaid ?? 0}
                 </Typography>
               </CardContent>

@@ -30,7 +30,7 @@ const monthsArray: Array<{ name: string; value: number }> = [
 ];
 
 function CardsTemplate() {
-  const classes = useStyles();
+  const classes = useStyles;
   const { cardsMonthList, loading, users } = useCardsContext();
   const [selectedFirstMonth, setSelectedFirstMonth] = useState(0);
   const [selectedSecondMonth, setSelectedSecondMonth] = useState(11);
@@ -50,7 +50,7 @@ function CardsTemplate() {
 
   return (
     <>
-      <Typography variant="h5" className={classes.title}>
+      <Typography variant="h5" sx={classes.title}>
         <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
           <InputLabel id="select-year">Ano</InputLabel>
           <Select
@@ -104,7 +104,7 @@ function CardsTemplate() {
         />
       </Typography>
 
-      <Grid className={classes.cards}>
+      <Grid sx={classes.cards}>
         {loading ? (
           <SkeletonCustom
             length={12}
@@ -118,7 +118,7 @@ function CardsTemplate() {
             </Grid>
           ))
         ) : (
-          <Typography variant="h6" className={classes.notFoundText}>
+          <Typography variant="h6" sx={classes.notFoundText}>
             Não encontrei nenhum mês.
           </Typography>
         )}

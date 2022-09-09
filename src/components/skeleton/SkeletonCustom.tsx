@@ -6,15 +6,15 @@ import Skeleton from "@mui/material/Skeleton";
 
 interface MediaProps {
   length: number;
-  childClass: string;
-  fatherClass: string;
+  childClass: any;
+  fatherClass: any;
 }
 
 function SkeletonCustom({ length, childClass, fatherClass }: MediaProps) {
   return (
-    <Grid className={fatherClass}>
+    <Grid sx={{ fatherClass }}>
       {Array.from(new Array(length)).map((_item, index) => (
-        <Skeleton className={childClass} key={index} variant="rectangular" />
+        <Skeleton sx={{ childClass }} key={index} variant="rectangular" />
       ))}
     </Grid>
   );

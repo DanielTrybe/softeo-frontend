@@ -1,24 +1,20 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "engines": {
-    "node": "16.x"
-  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@hookform/resolvers": "^2.9.7",
-    "@material-ui/styles": "^4.11.5",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.0",
-    "@mui/styles": "^5.9.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.43",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",
     "date-fns": "^2.29.2",
     "react": "^18.2.0",

@@ -30,7 +30,7 @@ type PopupDetails = {
 
 function NewClientModal({ setOpen, open }: PopupDetails) {
   const { postNewClient } = useCardsContext();
-  const classes = useStyles();
+  const classes = useStyles;
 
   const [price, setPrice] = useState("" as string);
   const [parcels, setParcels] = useState(0 as number);
@@ -106,40 +106,39 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
       }}
     >
       <Fade in={open}>
-        <Box className={classes.boxStyle}>
-          <Typography
-            className={classes.title}
-            variant="h5"
-            sx={{ mb: 2, mt: 1 }}
-          >
+        <Box sx={classes.boxStyle}>
+          <Typography sx={classes.title} variant="h5">
             Cadastre um novo Tratamento
           </Typography>
-          <Controller
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <TextField
-                inputProps={{ "data-testid": "header-input" }}
-                label="Nome"
-                id="outlined-start-adornment"
-                sx={{
-                  m: 2,
-                  width: "94.5%",
-                }}
-                value={value}
-                onChange={onChange}
-                error={errors?.name ? true : false}
-                helperText={
-                  errors?.name && (
-                    <span style={{ position: "absolute" }}>
-                      {errors?.name?.message}
-                    </span>
-                  )
-                }
-              />
-            )}
-            name="name"
-          />
-          <Grid display="flex" sx={{ widht: "100%" }}>
+          <Grid display="flex" sx={{ width: "100%" }}>
+            <Controller
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <TextField
+                  inputProps={{ "data-testid": "header-input" }}
+                  label="Nome"
+                  id="outlined-start-adornment"
+                  sx={{
+                    m: 2,
+                    width: "100%",
+                  }}
+                  value={value}
+                  onChange={onChange}
+                  error={errors?.name ? true : false}
+                  helperText={
+                    errors?.name && (
+                      <span style={{ position: "absolute" }}>
+                        {errors?.name?.message}
+                      </span>
+                    )
+                  }
+                />
+              )}
+              name="name"
+            />
+          </Grid>
+
+          <Grid display="flex" sx={{ width: "100%" }}>
             <Controller
               control={control}
               render={({ field: { onChange, value } }) => (
@@ -192,125 +191,127 @@ function NewClientModal({ setOpen, open }: PopupDetails) {
               name="tel"
             />
           </Grid>
-          <Controller
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <TextField
-                inputProps={{ "data-testid": "header-input" }}
-                label="E-mail"
-                id="outlined-start-adornment"
-                sx={{
-                  m: 2,
-                  width: "94.5%",
-                }}
-                value={value}
-                onChange={onChange}
-                error={errors?.email ? true : false}
-                helperText={
-                  errors?.email && (
-                    <span style={{ position: "absolute" }}>
-                      {errors?.email?.message}
-                    </span>
-                  )
-                }
-              />
-            )}
-            name="email"
-          />
-          <FormControl
-            sx={{
-              m: 2,
-              width: "94.5%",
-            }}
-          >
-            <InputLabel id="tratamento">Tratamento</InputLabel>
+          <Grid display="flex" flexWrap="wrap" sx={{ width: "100%" }}>
             <Controller
               control={control}
               render={({ field: { onChange, value } }) => (
-                <Select
-                  error={errors?.treatment ? true : false}
-                  labelId="tratamento"
-                  id="tratamento"
-                  value={value}
-                  label="Tratamento"
-                  onChange={(value) => {
-                    onChange(value);
-                    setPrice(value.target.value);
+                <TextField
+                  inputProps={{ "data-testid": "header-input" }}
+                  label="E-mail"
+                  id="outlined-start-adornment"
+                  sx={{
+                    m: 2,
+                    width: "100%",
                   }}
-                >
-                  {treatments.map((treatment, index) => (
-                    <MenuItem key={index} value={JSON.stringify(treatment)}>
-                      {treatment.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              )}
-              name="treatment"
-            />
-            {errors?.treatment && (
-              <span
-                style={{
-                  position: "absolute",
-                  margin: "60px 0 0 10px",
-                  color: "darkred",
-                  fontSize: 12,
-                }}
-              >
-                {errors?.treatment?.message}
-              </span>
-            )}
-          </FormControl>
-
-          <FormControl
-            sx={{
-              m: 2,
-              width: "94.5%",
-            }}
-          >
-            <InputLabel id="monthsToPay">Parcelar</InputLabel>
-            <Controller
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Select
-                  error={errors?.monthsToPay ? true : false}
-                  labelId="monthsToPay"
-                  id="monthsToPay"
                   value={value}
-                  label="Parcelar"
-                  onChange={(value) => {
-                    onChange(value);
-                    setParcels(Number(value.target.value));
-                  }}
-                >
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-                    (parcel, index) => (
-                      <MenuItem key={index} value={parcel}>
-                        {parcel} x
-                      </MenuItem>
+                  onChange={onChange}
+                  error={errors?.email ? true : false}
+                  helperText={
+                    errors?.email && (
+                      <span style={{ position: "absolute" }}>
+                        {errors?.email?.message}
+                      </span>
                     )
-                  )}
-                </Select>
+                  }
+                />
               )}
-              name="monthsToPay"
+              name="email"
             />
-            {errors?.monthsToPay && (
-              <span
-                style={{
-                  position: "absolute",
-                  margin: "60px 0 0 10px",
-                  color: "darkred",
-                  fontSize: 12,
-                }}
-              >
-                {errors?.monthsToPay?.message}
-              </span>
-            )}
-          </FormControl>
+            <FormControl
+              sx={{
+                m: 2,
+                width: "100%",
+              }}
+            >
+              <InputLabel id="tratamento">Tratamento</InputLabel>
+              <Controller
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    error={errors?.treatment ? true : false}
+                    labelId="tratamento"
+                    id="tratamento"
+                    value={value}
+                    label="Tratamento"
+                    onChange={(value) => {
+                      onChange(value);
+                      setPrice(value.target.value);
+                    }}
+                  >
+                    {treatments.map((treatment, index) => (
+                      <MenuItem key={index} value={JSON.stringify(treatment)}>
+                        {treatment.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                )}
+                name="treatment"
+              />
+              {errors?.treatment && (
+                <span
+                  style={{
+                    position: "absolute",
+                    margin: "60px 0 0 10px",
+                    color: "darkred",
+                    fontSize: 12,
+                  }}
+                >
+                  {errors?.treatment?.message}
+                </span>
+              )}
+            </FormControl>
+
+            <FormControl
+              sx={{
+                m: 2,
+                width: "100%",
+              }}
+            >
+              <InputLabel id="monthsToPay">Parcelar</InputLabel>
+              <Controller
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    error={errors?.monthsToPay ? true : false}
+                    labelId="monthsToPay"
+                    id="monthsToPay"
+                    value={value}
+                    label="Parcelar"
+                    onChange={(value) => {
+                      onChange(value);
+                      setParcels(Number(value.target.value));
+                    }}
+                  >
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
+                      (parcel, index) => (
+                        <MenuItem key={index} value={parcel}>
+                          {parcel} x
+                        </MenuItem>
+                      )
+                    )}
+                  </Select>
+                )}
+                name="monthsToPay"
+              />
+              {errors?.monthsToPay && (
+                <span
+                  style={{
+                    position: "absolute",
+                    margin: "60px 0 0 10px",
+                    color: "darkred",
+                    fontSize: 12,
+                  }}
+                >
+                  {errors?.monthsToPay?.message}
+                </span>
+              )}
+            </FormControl>
+          </Grid>
           <Grid sx={{ mt: 1, mb: 1 }}>{verifyPrice()}</Grid>
           <button
             onClick={handleSubmit(onSubmit)}
             type="button"
-            className={classes.closeBtn}
+            style={classes.closeBtn}
           >
             Cadastrar
           </button>
