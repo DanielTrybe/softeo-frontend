@@ -57,7 +57,7 @@ Com isto inicializamos um novo repositório, associamos o remoto com o link do r
 6. Quando terminar, será aberto em seu navegador o website.
 7. Pronto! A aplicação está pronta para uso!
 
-# Conteúdo
+# Conteúdo otimizado para Desktop e Smartphone
 
 ## Página inicial
 
