@@ -1,5 +1,3 @@
-import { number, string } from "yup";
-
 export type UsersArray = {
   id: number;
   name: string;

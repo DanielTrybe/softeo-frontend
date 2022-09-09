@@ -44,6 +44,7 @@ function CompactCard({ card, year, index }: CompactProps) {
       const filter = filterUsersByMonth(card.month);
       setUsersByThisMonth(filter);
     }
+    //eslint-disable-next-line
   }, []);
 
   const profit = () => {

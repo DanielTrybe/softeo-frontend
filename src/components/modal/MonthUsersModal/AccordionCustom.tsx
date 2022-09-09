@@ -8,7 +8,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Divider,
 } from "@mui/material";
 import { useStyles } from "./style";
 import { useCardsContext } from "hooks";

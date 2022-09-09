@@ -1,10 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-
-// import { CardsContextProps } from "./interface";
-
-import { CardsContextProps, UsersArray, Months } from "./types";
-import { usersArray, treatments, monthsMoney } from "../data";
-
+import { CardsContextProps, UsersArray } from "./types";
+import { usersArray, monthsMoney } from "../data";
 export const CardsContext = createContext({} as CardsContextProps);
 
 const CardsProvider: React.FC<{ children: React.ReactNode }> = ({
